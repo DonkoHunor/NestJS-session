@@ -16,7 +16,14 @@ export class AppController {
 
   @Get()
   @Render('index')
-  index() {
-    return { message: 'Welcome to the homepage' };
+  async index() {
+    const [data] = await conn.execute('SELECT * FROM products');
+    return { data };
+  }
+
+  @Get('/cart/add/:id')
+  @Render('index')
+  cartAdd(){
+
   }
 }
